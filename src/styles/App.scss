@@ -1,0 +1,184 @@
+:root {
+  --itemBackground: rgb(124, 105, 168);
+  --itemBackgroundHover: rgb(109, 83, 168);
+  --itemColor: rgb(255, 255, 255);
+  --borderRadius: .4rem;
+  --itemBorderColor: rgb(162, 216, 187);
+  --itemBorderColorHover: rgb(76, 209, 138);
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 3rem;
+}
+
+.alert-box {
+  position: absolute;
+  right: 2rem;
+  top: 0;
+  transform: translateY(-100%);
+  font-size: clamp(1.6rem, 1vw, 2.2rem);
+  background-color: var(--itemBackground);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 30rem;
+  border-radius: 1rem;
+
+  &-enter {
+    top: 0;
+    transform: translateY(-100%);
+  }
+
+  &-enter-active {
+    top: 2rem;
+    transform: translateY(0);
+    transition: all 400ms;
+  }
+
+  &-enter-done {
+    top: 2rem;
+    transform: translateY(0);
+  }
+
+  &-exit {
+    top: 2rem;
+    transform: translateY(0);
+  }
+
+  &-exit-active {
+    top: 0;
+    transform: translateY(-100%);
+    transition: all 400ms;
+  }
+}
+
+.password-generator__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  & > button {
+    background-color: var(--itemBackground);
+    color: var(--itemColor);
+    padding: 1rem 1.5rem;
+    margin-top: 2rem;
+    cursor: pointer;
+  }
+}
+
+.password-generator__form__inputs {
+  width: 100%;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  span {
+    font-size: 1.6rem;
+    white-space: nowrap;
+  }
+
+  input {
+    width: 100%;
+    max-width: 60%;
+
+    &[type='text'] {
+      background-color: var(--itemBackground);
+      padding: .5rem 1rem;
+      color: var(--itemColor);
+    }
+
+    &[type='checkbox'] {
+      --checkbox-size: 2rem;
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      appearance: none;
+      position: relative;
+      height: var(--checkbox-size);
+      width: var(--checkbox-size);
+
+      &:checked {
+        --itemBackground: var(--itemBackgroundHover);
+
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--itemBackground);
+        border-radius: var(--borderRadius);
+      }
+
+      &::before {
+        content: url(../images/check.svg);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+input[type='text'],
+button {
+  border-radius: var(--borderRadius);
+  transition: all .2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    --itemBackground: var(--itemBackgroundHover)
+  }
+}
+
+.password-generator__form__password {
+  font-size: 2rem;
+  margin-top: 2rem;
+
+  span {
+    border-bottom: .2rem solid var(--itemBorderColor);
+
+    &:hover {
+      --itemBorderColor: var(--itemBorderColorHover)
+    }
+  }
+}
